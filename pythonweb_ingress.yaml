@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pythonweb-ingress
+spec:
+  rules:
+    - host: pythonweb.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pythonweb-service
+                port:
+                  number: 80
+

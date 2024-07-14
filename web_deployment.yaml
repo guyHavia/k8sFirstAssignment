@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonweb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pythonweb
+  template:
+    metadata:
+      labels:
+        app: pythonweb
+    spec:
+      containers:
+      - name: pythonweb
+        image: guyhavia/tests:pythonweb
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: dockerhub-secret
+
