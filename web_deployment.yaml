@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: pythonweb
-        image: guyhavia/tests:pythonweb
+        image: guyhavia/tests:pythonweb2
         ports:
         - containerPort: 8080
       imagePullSecrets:
