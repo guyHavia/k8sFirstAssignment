@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-server
+  namespace: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-server
+  template:
+    metadata:
+      labels:
+        app: prometheus-server
+    spec:
+      serviceAccountName: prometheus  # Use the service account
+      containers:
+        - name: prometheus
+          image: prom/prometheus
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/prometheus
+            - name: prometheus-token
+              mountPath: /var/run/secrets/kubernetes.io/serviceaccount  # Mount the token
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: prometheus-server-conf
+            defaultMode: 420
+        - name: prometheus-token
+          secret:
+            secretName: prometheus-sa-token
