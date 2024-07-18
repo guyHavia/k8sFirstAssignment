@@ -1,3 +1,3 @@
-Need to read about types of services and methods of exposing nodes, in minikube, load balancer is not an option i think, it is more "cloud native" (aka eks, aks ...)
-Write here everything i didnt understand fully or needed a deeper learning.
-thanks
+Questions:
+1. what is wrong with the modified dockerfile?
+2. what permissions does prometheus needs to access nodes/metrics? i tried to give him that and got back 403 error.
